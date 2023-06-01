@@ -139,3 +139,16 @@ Use the below snippet in the main.ts to use this validation class globally
 setting whitelist:true makes sure we are stripping out all the irrelevant params 
 
 argon library for hashing password
+argon.hash(dto.password) - to hash the password
+
+We make changes in schema to add unique constraint to the email field in the user and run the migrations
+
+We add the automation scripts for prisma and docker db in dev environment to restart db and apply the migrations 
+
+**Config Module**
+
+```
+npm add @nestjs/config
+```
+Add it to the imports in the App module. It used dotenv library.
+Set isGlobal to true in the config module import to make sure it is available in entire application.
