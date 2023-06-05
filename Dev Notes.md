@@ -152,3 +152,33 @@ npm add @nestjs/config
 ```
 Add it to the imports in the App module. It used dotenv library.
 Set isGlobal to true in the config module import to make sure it is available in entire application.
+
+**Authentication using JWT Password**
+https://jwt.io to check the JWT info
+
+```
+npm install --save @nestjs/passport passport
+npm install --save @nestjs/jwt passport-jwt
+npm install --save-dev @types/passport-jwt 
+```
+
+In the auth module we import the JwtModule and register it .
+In the auth service we import JwtService in constructor. In the service we create a method to create jwt token by using signAsync
+
+We add this JWT Strategy to the Auth by including it in the Providers
+
+**User Controller**
+```
+nest g controller user --no-spec
+```
+
+We need to protect this endpoint with our Auth strategy, we use nestJS Guards for the same. 
+
+```
+@UseGuards(AuthGuard("jwt"))
+```
+Add this to the Get method as a guard to protect it. In JWT Strategy we need to add the validate function to validate the user and pass it on to the User controller
+
+@HttpCode can be used in Controller to manually set the Status code 
+
+**Automated Testing**
